@@ -1,5 +1,27 @@
 version: '3.3'
 services:
+  php:
+    build: ./php7-fpm
+    environment:
+        APP_ENV: dev
+    volumes:
+      - ./app/:/var/www/app/
+    networks:
+      - elk  
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./app/:/var/www/app/
+      - ./nginx/log:/var/log/nginx  
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=elk"
+      - "traefik.http.routers.nginx.rule=Host(`www.symfony-4-docker-dev.com`)"
+      - "traefik.http.services.nginx.loadbalancer.server.port=81"
+    ports:
+      - 81:81
+    networks:
+      - elk  
   elasticsearch:
     build:
       context: elasticsearch/
@@ -13,6 +35,11 @@ services:
       - type: volume
         source: elasticsearch
         target: /usr/share/elasticsearch/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=elk"
+      - "traefik.http.routers.elasticsearch.rule=Host(`elasticsearch.com`)"
+      - "traefik.http.services.elasticsearch.loadbalancer.server.port=9200"    
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -56,29 +83,17 @@ services:
         source: ./kibana/config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=elk"
+      - "traefik.http.routers.kibana.rule=Host(`kibana.com`)"
+      - "traefik.http.services.kibana.loadbalancer.server.port=5601"          
     ports:
       - "5601:5601"
     networks:
       - elk
     depends_on:
       - elasticsearch  
-  nginx:
-    build: ./nginx
-    volumes:
-      - ./app/:/var/www/app/
-      - ./nginx/log:/var/log/nginx
-    ports:
-      - 80:80
-    networks:
-      - elk
-  php:
-    build: ./php7-fpm
-    environment:
-        APP_ENV: dev
-    volumes:
-      - ./app/:/var/www/app/
-    networks:
-      - elk
   filebeat:
     build: ./filebeat
     entrypoint: "filebeat -e -strict.perms=false"
@@ -94,7 +109,24 @@ services:
       - elasticsearch
       - kibana
     links: 
-      - logstash      
+      - logstash         
+###########
+# Traefik #
+###########
+  traefik:
+    image: traefik:v2.1
+    command: 
+      - --api.insecure=true 
+      - --providers.docker 
+      - --providers.docker.exposedByDefault=false 
+      - --providers.docker.network=internal
+    ports:
+      - "80:80"
+      - 8080:8080
+    networks:
+      - elk
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock      
 networks:
   elk:
     driver: bridge

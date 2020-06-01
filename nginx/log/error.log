@@ -1,1 +1,20 @@
 2020/05/30 15:13:14 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.17.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.17.0.3:9000", host: "0.0.0.0"
+2020/05/30 19:57:59 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/30 20:25:04 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/30 20:55:07 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/30 20:56:29 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:33 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:34 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:36 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:37 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:38 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:39 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:40 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:40 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:40 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 20:56:41 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.112.5, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.112.3:9000", host: "0.0.0.0"
+2020/05/30 21:05:11 [alert] 1#1: worker process 7 exited on signal 9
+2020/05/31 12:15:41 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/31 13:02:08 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/31 16:59:25 [alert] 1#1: worker process 6 exited on signal 9
+2020/05/31 19:07:20 [alert] 1#1: worker process 6 exited on signal 9
