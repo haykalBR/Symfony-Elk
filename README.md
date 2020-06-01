@@ -27,9 +27,13 @@ This results in the following running containers:
 ##Config 
 
 Add in hosts 
+
 127.0.0.1 www.symfony-4-docker-dev.com
+
 127.0.0.1 elasticsearch.com
+
 127.0.0.1 kibana.com
+
 127.0.0.1 portainer.com
  
 
