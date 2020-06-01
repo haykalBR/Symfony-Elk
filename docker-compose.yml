@@ -127,6 +127,21 @@ services:
       - elk
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
+  portainer:
+      image: portainer/portainer
+      expose:
+        - "9000"
+      networks:
+        - elk
+      labels:    
+      - "traefik.enable=true"
+      - "traefik.docker.network=elk"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.com`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000" 
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+        #- "/srv/data/templates:/usr/share/nginx/html"
+
 networks:
   elk:
     driver: bridge
