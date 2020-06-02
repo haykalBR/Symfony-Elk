@@ -1,5 +1,8 @@
 version: '3.3'
 services:
+###########
+# Php #
+###########  
   php:
     build: ./php7-fpm
     container_name: php
@@ -9,6 +12,9 @@ services:
       - ./app/:/var/www/app/
     networks:
       - elk  
+###########
+# Nginx #
+###########      
   nginx:
     build: ./nginx
     container_name: web
@@ -24,11 +30,15 @@ services:
       - 81:81
     networks:
       - elk  
+################
+# Elasticsearch #
+################      
   elasticsearch:
     build:
       context: elasticsearch/
       args:
         ELK_VERSION: $ELK_VERSION
+        PASSWORD_ELK: $PASSWORD_ELK
     container_name: elasticsearch
     volumes:
       - type: bind
@@ -51,11 +61,15 @@ services:
       ELASTIC_PASSWORD: changeme
     networks:
       - elk
+###########
+# Logstash #
+###########       
   logstash:
     build:
       context: logstash/
       args:
         ELK_VERSION: $ELK_VERSION
+        PASSWORD_ELK: $PASSWORD_ELK
     container_name: logstash    
     volumes:
       - type: bind
@@ -77,11 +91,15 @@ services:
       - elk
     depends_on:
       - elasticsearch
+###########
+# Kibana #
+###########        
   kibana:
     build:
       context: kibana/
       args:
         ELK_VERSION: $ELK_VERSION
+        PASSWORD_ELK: $PASSWORD_ELK
     container_name: kibana        
     volumes:
       - type: bind
@@ -99,8 +117,12 @@ services:
       - elk
     depends_on:
       - elasticsearch  
+###########
+# filebeat #
+###########        
   filebeat:
     build: ./filebeat
+   
     container_name: filebeat
     entrypoint: "filebeat -e -strict.perms=false"
     volumes:
@@ -134,6 +156,9 @@ services:
       - elk
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
+###########
+# Portainer #
+###########        
   portainer:
       image: portainer/portainer
       container_name: portainer
@@ -148,10 +173,11 @@ services:
       - "traefik.http.services.portainer.loadbalancer.server.port=9000" 
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock"
-        #- "/srv/data/templates:/usr/share/nginx/html"
+        - portainer-data:/data
 
 networks:
   elk:
     driver: bridge
 volumes:
   elasticsearch:
+  portainer-data:
