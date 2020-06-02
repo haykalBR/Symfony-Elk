@@ -24,7 +24,7 @@ portainer: managing containers from a browser
 This results in the following running containers:
 ![Screenshot from 2020-06-01 21-47-59](https://user-images.githubusercontent.com/12957189/83453023-a2de3800-a451-11ea-997a-f4db79d8c391.png)
  
-##Config 
+## Config 
 
 Add in hosts 
 
