@@ -126,7 +126,7 @@ services:
     container_name: filebeat
     entrypoint: "filebeat -e -strict.perms=false"
     volumes:
-      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./filebeat/config/nginx.yml:/usr/share/filebeat/filebeat.yml
       - ./nginx/log:/var/log/nginx
     networks:
       - elk
