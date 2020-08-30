@@ -1,6 +1,7 @@
 ## elk-docker-compose
 
 Docker-compose project to get an ElasticSearch + Logstash + Kibana + Filebeat + phpfpm + Nginix +traefik+ portainer   stack up and running quickly. 
+#COPY ./config/default.conf /etc/nginx/conf.d/
 
 ## Getting Started
  git clone https://github.com/haykalBR/Symfony-Elk.git
@@ -40,4 +41,9 @@ Add in hosts
 ![Docker](https://user-images.githubusercontent.com/12957189/83452924-7cb89800-a451-11ea-8c80-e4095e830ab4.png)
 
 
+sudo docker network create --driver bridge web
 
+DNS kol en .local 
+nraka7 f conf toutes les versions
+https://github.com/ypereirareis/docker-metricbeat-example/blob/master/docker/metricbeat/metricbeat.yml
+hedha fih metric beat fih make zda jaw

@@ -1,0 +1,23 @@
+global:				# génériques
+  resolve_timeout: 2m
+  smtp_require_tls: false
+
+route:				# règles de déclenchement
+  group_by: ['instance', 'severity']
+  group_wait: 10s		# temps d'attente avant notification du group
+  group_interval: 1m		# délai par rapport aux alertes du même groupe
+  repeat_interval: 5s		# attente avant répétition
+  receiver: 'email-me'
+  routes:
+  - match:
+      alertname: Trop_2_load
+
+receivers:
+- name: 'email-me'
+  email_configs:
+  - to: "haikelbrinis@gmail.com"
+    from: "haikelbrinis1@gmail.com"
+    smarthost: "smtp.gmail.com:465"
+    auth_username: "haikelbrinis1@gmail.com"
+    auth_identity: "haikelbrinis1@gmail.com"
+    auth_password: "haikel1234"

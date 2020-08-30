@@ -1,8 +1,14 @@
 filebeat.inputs:
-- type: log
-  enabled: true
-  paths:
-    - /var/log/nginx/*.log
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/*.log
+    tags: ["nginxlog"]
+  - type: log
+    enabled: true
+    paths:
+      - /var/www/app/var/log/*.log
+    tags: ["symfonylog"]
 output.logstash:
   enabled: true
   hosts: ["logstash:5044"]
@@ -10,3 +16,4 @@ setup.kibana:
   host: "http://kibana:5601"
   username: "elastic"
   password: "changeme"
+

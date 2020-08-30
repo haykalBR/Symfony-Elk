@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+  {% block content %} 
+        <div class="row" style="margin-top: 40px">
+        {% for product in products %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{product.name}}</a>
+                </h4>
+                <h5> {{product.price}} TND</h5>
+                <p class="card-text">
+                {{ product.description|striptags|slice(0, 120) }}
+                </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary btn-xs" style="color: #FFF">Ajouter à mes favoris</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="navigation" >
+            {{ knp_pagination_render(products) }}
+        </div>
+     {% endblock %}
+{% endblock %}
+

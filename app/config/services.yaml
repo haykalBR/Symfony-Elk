@@ -25,3 +25,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+################ Monolog ##############################
+    monolog.formatter.session_request:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%][%%channel%%][%%level%%] [%%message%%] [%%extra.ip%%][%%extra.PathInfo%%][%%extra.methode%%][%%extra.http_user_agent%%] \n"
+    App\Logger\ElkProcessor:
+        tags:
+            - { name: monolog.processor}
+    monolog.elkHandler:
+        class: App\Logger\ElkHandler

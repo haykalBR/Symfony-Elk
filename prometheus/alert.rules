@@ -1,0 +1,11 @@
+groups:
+  - name: test
+    rules:
+    - alert: Trop_2_load
+      expr: node_load1 >= 100000000
+      for: 10s
+      labels:
+        severity: critical
+      annotations:
+        summary: "{{ $labels.instance }} - trop de load"
+        description: "Le server en prend plein la tronche "

@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% include "Template/head.html.twig" %}
+{% block stylesheets %}{% endblock %}
+{% include "Template/head-end.html.twig" %}
+{% include "Template/header.html.twig" %}
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+
+            <h1 class="my-4">BI3</h1>
+            <div class="list-group">
+                <a href="{{path('home')}}" class="list-group-item">Listes des catégorie</a>
+                <a href="#" class="list-group-item">Mes produits favoris</a>
+                <a href="#" class="list-group-item">Déconnexion</a>
+            </div>
+
+        </div>
+        <div class="col-lg-9">
+         {{  block('content') }}
+        </div>
+        </div>
+    </div>
+</div>
+{% include "Template/footer.html.twig" %}
+{% block javascripts %}{% endblock %}
