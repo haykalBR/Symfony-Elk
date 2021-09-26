@@ -43,7 +43,3 @@ Add in hosts
 
 sudo docker network create --driver bridge web
 
-DNS kol en .local 
-nraka7 f conf toutes les versions
-https://github.com/ypereirareis/docker-metricbeat-example/blob/master/docker/metricbeat/metricbeat.yml
-hedha fih metric beat fih make zda jaw
